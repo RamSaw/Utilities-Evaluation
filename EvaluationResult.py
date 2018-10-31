@@ -21,10 +21,10 @@ class EvaluationResult:
         self.numberOfFoundBad += evaluation_result.get_found_bad_refactorings_number()
         self.numberOfFoundOthers += evaluation_result.get_found_others_refactorings_number()
 
-    def get_good_precision(self) -> float:
+    def get_good_recall(self) -> float:
         return divide_with_nan(self.numberOfFoundGood, self.numberOfGood)
 
-    def get_good_recall(self) -> float:
+    def get_good_precision(self) -> float:
         return divide_with_nan(self.numberOfFoundGood, self.get_number_of_found_bad_and_good())
 
     def get_bad_precision(self) -> float:
