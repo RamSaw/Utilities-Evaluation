@@ -1,4 +1,7 @@
+import getopt
 import os
+
+import sys
 
 from ProjectEvaluator import JDeodorantProjectEvaluator
 from EvaluationResult import EvaluationResult
@@ -6,19 +9,22 @@ from EvaluationResult import EvaluationResult
 
 class Evaluator:
     @staticmethod
-    def evaluate(dataset_root_path: str) -> EvaluationResult:
+    def evaluate(dataset_root_path: str, tool_name: str) -> EvaluationResult:
         evaluation_result = EvaluationResult()
-        with open(os.path.join(dataset_root_path, "project_evaluation_results"), "w") as f:
+        with open(os.path.join(dataset_root_path, tool_name + "_project_evaluation_results"), "w") as f:
+            dataset_root_path = os.path.join(dataset_root_path, "projects")
             for project in os.listdir(dataset_root_path):
-                project_result = JDeodorantProjectEvaluator.evaluate(os.path.join(dataset_root_path, project))
+                project_result = JDeodorantProjectEvaluator.evaluate(os.path.join(dataset_root_path, project), tool_name)
                 if project_result is None:
                     print("No file with found refactorings for " + project + " project")
                     continue
                 f.write("===========" + project + "===========" + "\n")
                 f.write("Good refactorings number: " + str(project_result.get_good_refactorings_number()) + "\n")
                 f.write("Bad refactorings number: " + str(project_result.get_bad_refactorings_number()) + "\n")
-                f.write("Found good refactorings number: " + str(project_result.get_found_good_refactorings_number()) + "\n")
-                f.write("Found bad refactorings number: " + str(project_result.get_found_bad_refactorings_number()) + "\n")
+                f.write("Found good refactorings number: " + str(
+                    project_result.get_found_good_refactorings_number()) + "\n")
+                f.write(
+                    "Found bad refactorings number: " + str(project_result.get_found_bad_refactorings_number()) + "\n")
                 f.write("Found others refactorings number: " +
                         str(project_result.get_found_others_refactorings_number()) + "\n")
                 f.write("\n\n")
@@ -52,10 +58,33 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
                 str(evaluation_result.numberOfFoundOthers) + "\n")
 
 
-def main():
+def print_help():
+    print('Evaluator.py -d <path_to_dataset> -u <utility: "JDeodorant" or "JMove">')
+
+
+def main(argv):
     dataset_root_path = "/home/mikhail/Documents/Development/UtilitiesEvaluation/Dataset/projects/"
-    evaluation_result_to_save = "/home/mikhail/Documents/Development/UtilitiesEvaluation/Dataset/JDeodorant_result"
-    write_result_to_file(evaluation_result_to_save, Evaluator.evaluate(dataset_root_path))
+    tool = None
+    try:
+        opts, args = getopt.getopt(argv, "hd:t:", ["dataset=", "tool="])
+    except getopt.GetoptError:
+        print_help()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print_help()
+            sys.exit()
+        elif opt in ("-d", "--dataset"):
+            dataset_root_path = arg
+        elif opt in ("-t", "--tool"):
+            tool = arg
+    if tool is None or dataset_root_path is None:
+        print("Param is missing, try again\n")
+        print_help()
+        sys.exit(2)
+    path_to_save_evaluation_result = os.path.join(dataset_root_path, tool + "_result")
+    write_result_to_file(path_to_save_evaluation_result, Evaluator.evaluate(dataset_root_path, tool))
+
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

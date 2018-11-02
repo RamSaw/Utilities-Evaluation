@@ -1,6 +1,5 @@
 import unittest
 
-from EvaluationResult import EvaluationResult
 from Evaluator import Evaluator
 
 
