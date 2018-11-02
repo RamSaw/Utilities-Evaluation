@@ -1,0 +1,4 @@
+Refactoring Type	Source Entity	Target Class	Source/Target accessed members	Rate it!
+Move Method	org.package2.B::method1():org.package1.R org.package1.A	0/12
+Move Method	B::method4():R A	0/4
+Move Method	org.package2.B::method3(org.package3.B):Q org.package1.A	0/2

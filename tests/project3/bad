@@ -1,0 +1,25 @@
+[
+  {
+    "targetClassQualifiedName": "org.package1.A",
+    "sourceClassQualifiedName": "org.package2.B",
+    "methodName": "method1",
+    "paramsClasses": []
+  },
+  {
+    "targetClassQualifiedName": "org.package1.C",
+    "sourceClassQualifiedName": "org.package1.D",
+    "methodName": "method2",
+    "paramsClasses": [
+      "org.package3.P1",
+      "org.package3.A"
+    ]
+  },
+  {
+    "targetClassQualifiedName": "org.package1.A",
+    "sourceClassQualifiedName": "org.package2.B",
+    "methodName": "method3",
+    "paramsClasses": [
+      "org.package3.B"
+    ]
+  }
+]

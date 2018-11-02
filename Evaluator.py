@@ -8,7 +8,7 @@ class Evaluator:
     @staticmethod
     def evaluate(dataset_root_path: str) -> EvaluationResult:
         evaluation_result = EvaluationResult()
-        with open("../project_evaluation_results", "w") as f:
+        with open(os.path.join(dataset_root_path, "project_evaluation_results"), "w") as f:
             for project in os.listdir(dataset_root_path):
                 project_result = JDeodorantProjectEvaluator.evaluate(os.path.join(dataset_root_path, project))
                 if project_result is None:
