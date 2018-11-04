@@ -33,7 +33,7 @@ class ComplexTest(unittest.TestCase):
     badRecall = (numberOfBad_all - numberOfBad_all_found) / numberOfBad_all
 
     def test_evaluate_all_dataset(self):
-        evaluation_result = Evaluator.evaluate(ComplexTest.dataset_path)
+        evaluation_result = Evaluator.evaluate(ComplexTest.dataset_path, "JDeodorant")
         self.assertEqual(self.numberOfGood_all, evaluation_result.numberOfGood)
         self.assertEqual(self.numberOfGood_all_found, evaluation_result.numberOfFoundGood)
         self.assertEqual(self.numberOfBad_all, evaluation_result.numberOfBad)
