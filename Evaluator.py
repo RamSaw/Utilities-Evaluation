@@ -1,10 +1,9 @@
 import getopt
 import os
-
 import sys
 
-from ProjectEvaluator import JDeodorantProjectEvaluator
 from EvaluationResult import EvaluationResult
+from ProjectEvaluator import JDeodorantProjectEvaluator
 
 
 class Evaluator:
@@ -14,21 +13,27 @@ class Evaluator:
         with open(os.path.join(dataset_root_path, tool_name + "_project_evaluation_results"), "w") as f:
             dataset_root_path = os.path.join(dataset_root_path, "projects")
             for project in os.listdir(dataset_root_path):
-                project_result = JDeodorantProjectEvaluator.evaluate(os.path.join(dataset_root_path, project), tool_name)
-                if project_result is None:
-                    print("No file with found refactorings for " + project + " project")
-                    continue
-                f.write("===========" + project + "===========" + "\n")
-                f.write("Good refactorings number: " + str(project_result.get_good_refactorings_number()) + "\n")
-                f.write("Bad refactorings number: " + str(project_result.get_bad_refactorings_number()) + "\n")
-                f.write("Found good refactorings number: " + str(
-                    project_result.get_found_good_refactorings_number()) + "\n")
-                f.write(
-                    "Found bad refactorings number: " + str(project_result.get_found_bad_refactorings_number()) + "\n")
-                f.write("Found others refactorings number: " +
-                        str(project_result.get_found_others_refactorings_number()) + "\n")
-                f.write("\n\n")
-                evaluation_result.add_result(project_result)
+                try:
+                    project_result = JDeodorantProjectEvaluator.evaluate(os.path.join(dataset_root_path, project),
+                                                                         tool_name)
+                    if project_result is None:
+                        print("No file with found refactorings for " + project + " project")
+                        continue
+                    f.write("===========" + project + "===========" + "\n")
+                    f.write("Good refactorings number: " + str(project_result.get_good_refactorings_number()) + "\n")
+                    f.write("Bad refactorings number: " + str(project_result.get_bad_refactorings_number()) + "\n")
+                    f.write("Found good refactorings number: " + str(
+                        project_result.get_found_good_refactorings_number()) + "\n")
+                    f.write(
+                        "Found bad refactorings number: " + str(
+                            project_result.get_found_bad_refactorings_number()) + "\n")
+                    f.write("Found others refactorings number: " +
+                            str(project_result.get_found_others_refactorings_number()) + "\n")
+                    f.write("\n\n")
+                    evaluation_result.add_result(project_result)
+                except Exception:
+                    print("Error on project: " + project)
+                    raise
             return evaluation_result
 
 

@@ -1,0 +1,5 @@
+Move Method	org.apache.A::method1(P1, P2, P3):List<? extends Bclass>	org.apache.B
+Move Method	org.apache.A::method1(List<? extends Bclass>, List<K>, P3):List<? extends Bclass>	org.apache.B
+Move Method	org.apache.A::method1(List<? extends Bclass>, Map<String,? extends Person>, Model<T>):T	org.apache.B
+Move Method	org.apache.A::method1(Map<String,Person>):T	org.apache.B
+Move Method	org.apache.A::method1():T	org.apache.B
