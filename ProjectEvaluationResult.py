@@ -11,6 +11,8 @@ class ProjectEvaluationResult:
         super().__init__()
         self.good_refactorings = list(good_refactorings)
         self.bad_refactorings = list(bad_refactorings)
+        assert len(set(self.good_refactorings)) == len(good_refactorings)
+        assert len(set(self.bad_refactorings)) == len(bad_refactorings)
         self.found_good_refactorings = list(set(good_refactorings) & set(found_refactorings))
         self.found_bad_refactorings = list(set(bad_refactorings) & set(found_refactorings))
         self.found_others_refactorings = list(set(found_refactorings) -
