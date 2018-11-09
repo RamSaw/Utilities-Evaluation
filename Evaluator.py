@@ -43,11 +43,11 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
-        string_to_write = "Bad Precision: " + str(evaluation_result.get_bad_precision()) + "\n"
+        string_to_write = "Good Recall: " + str(evaluation_result.get_good_recall()) + "\n"
         print(string_to_write)
         f.write(string_to_write)
 
-        string_to_write = "Good Recall: " + str(evaluation_result.get_good_recall()) + "\n"
+        string_to_write = "Bad Precision: " + str(evaluation_result.get_bad_precision()) + "\n"
         print(string_to_write)
         f.write(string_to_write)
 
