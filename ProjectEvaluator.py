@@ -23,4 +23,4 @@ class JDeodorantProjectEvaluator:
         good_refactorings = JBMoveMethodLoader.load(good_refactorings_path, tool_name != "JMove")
         bad_refactorings = JBMoveMethodLoader.load(bad_refactorings_path, tool_name != "JMove")
         found_refactorings = JDeodorantMoveMethodLoader.load(found_refactorings_path)
-        return ProjectEvaluationResult(good_refactorings, bad_refactorings, found_refactorings)
+        return ProjectEvaluationResult(good_refactorings, bad_refactorings, found_refactorings, project_name)
