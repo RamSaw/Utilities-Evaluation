@@ -10,7 +10,8 @@ class Evaluator:
     @staticmethod
     def evaluate(dataset_root_path: str, tool_name: str) -> EvaluationResult:
         evaluation_result = EvaluationResult()
-        with open(os.path.join(dataset_root_path, tool_name + "_project_evaluation_results"), "w") as f:
+        with open(os.path.join(dataset_root_path, "evaluationResults", tool_name + "_project_evaluation_results"), "w") \
+                as f:
             dataset_root_path = os.path.join(dataset_root_path, "projects")
             for project in os.listdir(dataset_root_path):
                 try:
@@ -87,7 +88,7 @@ def main(argv):
         print("Param is missing, try again\n")
         print_help()
         sys.exit(2)
-    path_to_save_evaluation_result = os.path.join(dataset_root_path, tool + "_result")
+    path_to_save_evaluation_result = os.path.join(dataset_root_path, "evaluationResults", tool + "_result_ALL")
     write_result_to_file(path_to_save_evaluation_result, Evaluator.evaluate(dataset_root_path, tool))
 
 
