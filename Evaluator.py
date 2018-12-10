@@ -10,8 +10,8 @@ class Evaluator:
     @staticmethod
     def evaluate(dataset_root_path: str, tool_name: str) -> EvaluationResult:
         evaluation_result = EvaluationResult()
-        with open(os.path.join(dataset_root_path, "evaluationResults", tool_name + "_project_evaluation_results"), "w") \
-                as f:
+        with open(os.path.join(dataset_root_path, "evaluationResults",
+                               tool_name + "_project_evaluation_results"), "w") as f:
             dataset_root_path = os.path.join(dataset_root_path, "projects")
             for project in os.listdir(dataset_root_path):
                 try:
@@ -69,7 +69,7 @@ def print_help():
 
 
 def main(argv):
-    dataset_root_path = "/home/mikhail/Documents/Development/UtilitiesEvaluation/Dataset/projects/"
+    dataset_root_path = None
     tool = None
     try:
         opts, args = getopt.getopt(argv, "hd:t:", ["dataset=", "tool="])

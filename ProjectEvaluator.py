@@ -1,6 +1,7 @@
 import os
 from typing import Optional
 
+from DLBMoveMethodLoader import DLBMoveMethodLoader
 from JBMoveMethodLoader import JBMoveMethodLoader
 from JDeodorantMoveMethodLoader import JDeodorantMoveMethodLoader
 from ProjectEvaluationResult import ProjectEvaluationResult
@@ -22,5 +23,6 @@ class JDeodorantProjectEvaluator:
             return None
         good_refactorings = JBMoveMethodLoader.load(good_refactorings_path, tool_name != "JMove")
         bad_refactorings = JBMoveMethodLoader.load(bad_refactorings_path, tool_name != "JMove")
-        found_refactorings = JDeodorantMoveMethodLoader.load(found_refactorings_path)
+        found_refactorings = DLBMoveMethodLoader.load(found_refactorings_path) if tool_name == "DLB" \
+            else JDeodorantMoveMethodLoader.load(found_refactorings_path)
         return ProjectEvaluationResult(good_refactorings, bad_refactorings, found_refactorings, project_name)
