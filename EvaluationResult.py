@@ -104,5 +104,11 @@ class EvaluationResult:
         return 2 * self.get_good_precision_without_target_only_good() * self.get_good_recall_without_target_only_good() \
                / (self.get_good_precision_without_target_only_good() + self.get_good_recall_without_target_only_good())
 
+    def get_good_accuracy(self) -> float:
+        return self.numberOfFoundGood / self.numberOfFoundGoodWithoutTarget
+
+    def get_bad_accuracy(self) -> float:
+        return self.numberOfFoundBad / self.numberOfFoundBadWithoutTarget
+
     def get_number_of_found_bad_and_good_without_target(self) -> int:
         return self.numberOfFoundGoodWithoutTarget + self.numberOfFoundBadWithoutTarget

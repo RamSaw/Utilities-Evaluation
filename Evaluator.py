@@ -130,6 +130,16 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
+        string_to_write = "Good Accuracy: " + \
+                          str(evaluation_result.get_good_accuracy()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Bad Accuracy: " + \
+                          str(evaluation_result.get_bad_accuracy()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
         f.write("Good refactorings number: " + str(evaluation_result.numberOfGood) + "\n")
         f.write("Bad refactorings number: " + str(evaluation_result.numberOfBad) + "\n")
         f.write("Found good refactorings number: " + str(evaluation_result.numberOfFoundGood) + "\n")
