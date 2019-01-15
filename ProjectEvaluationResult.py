@@ -38,6 +38,12 @@ class ProjectEvaluationResult:
         self.found_others_refactorings_without_target = list(set(self.found_refactorings_without_target) -
                                                              (set(self.found_bad_refactorings_without_target) |
                                                               set(self.found_good_refactorings_without_target)))
+        # only for modified versions
+        # (estimation considering only project containing only good refactorings and other refactorings are bad)
+        self.found_others_refactorings_only_good = list() if len(good_refactorings) == 0 \
+            else list(set(self.found_refactorings) - set(self.found_good_refactorings))
+        self.found_others_refactorings_without_target_only_good = list() if len(good_refactorings) == 0 \
+            else list(set(self.found_refactorings_without_target) - set(self.found_good_refactorings_without_target))
 
     def get_good_refactorings_number(self) -> int:
         return len(self.good_refactorings)
@@ -62,3 +68,9 @@ class ProjectEvaluationResult:
 
     def get_found_others_refactorings_without_target_number(self) -> int:
         return len(self.found_others_refactorings_without_target)
+
+    def get_found_others_refactorings_only_good_number(self) -> int:
+        return len(self.found_others_refactorings_only_good)
+
+    def get_found_others_refactorings_without_target_only_good_number(self) -> int:
+        return len(self.found_others_refactorings_without_target_only_good)

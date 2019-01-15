@@ -56,11 +56,19 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
+        string_to_write = "Good F-measure: " + str(evaluation_result.get_good_f_measure()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
         string_to_write = "Bad Precision: " + str(evaluation_result.get_bad_precision()) + "\n"
         print(string_to_write)
         f.write(string_to_write)
 
         string_to_write = "Bad Recall: " + str(evaluation_result.get_bad_recall()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Bad F-measure: " + str(evaluation_result.get_bad_f_measure()) + "\n"
         print(string_to_write)
         f.write(string_to_write)
 
@@ -74,6 +82,11 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
+        string_to_write = "Good F-measure Without Target: " + \
+                          str(evaluation_result.get_good_f_measure_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
         string_to_write = "Bad Precision Without Target: " + \
                           str(evaluation_result.get_bad_precision_without_target()) + "\n"
         print(string_to_write)
@@ -84,18 +97,57 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
+        string_to_write = "Bad F-measure Without Target: " + \
+                          str(evaluation_result.get_bad_f_measure_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good Precision Only Good: " + str(evaluation_result.get_good_precision_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good Recall Only Good: " + str(evaluation_result.get_good_recall_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good F-measure Only Good: " + \
+                          str(evaluation_result.get_good_f_measure_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good Precision Without Target Only Good: " + \
+                          str(evaluation_result.get_good_precision_without_target_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good Recall Without Target Only Good: " + \
+                          str(evaluation_result.get_good_recall_without_target_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good F-measure Without Target Only Good: " + \
+                          str(evaluation_result.get_good_f_measure_without_target_only_good()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
         f.write("Good refactorings number: " + str(evaluation_result.numberOfGood) + "\n")
         f.write("Bad refactorings number: " + str(evaluation_result.numberOfBad) + "\n")
         f.write("Found good refactorings number: " + str(evaluation_result.numberOfFoundGood) + "\n")
         f.write("Found bad refactorings number: " + str(evaluation_result.numberOfFoundBad) + "\n")
         f.write("Found others refactorings number: " +
                 str(evaluation_result.numberOfFoundOthers) + "\n")
+        # without target
         f.write("Found good refactorings without target number: " +
                 str(evaluation_result.numberOfFoundGoodWithoutTarget) + "\n")
         f.write("Found bad refactorings without target number: " +
                 str(evaluation_result.numberOfFoundBadWithoutTarget) + "\n")
         f.write("Found others refactorings without target number: " +
                 str(evaluation_result.numberOfFoundOthersWithoutTarget) + "\n")
+        # only good
+        f.write("Found others refactorings number only good: " +
+                str(evaluation_result.numberOfFoundOthersOnlyGood) + "\n")
+        f.write("Found others refactorings without target only good number: " +
+                str(evaluation_result.numberOfFoundOthersWithoutTargetOnlyGood) + "\n")
 
 
 def print_help():
