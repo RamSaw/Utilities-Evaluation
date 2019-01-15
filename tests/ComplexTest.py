@@ -44,5 +44,6 @@ class ComplexTest(unittest.TestCase):
         self.assertEqual(self.badPrecision, evaluation_result.get_bad_precision())
         self.assertEqual(self.badRecall, evaluation_result.get_bad_recall())
 
+
 if __name__ == '__main__':
     unittest.main()

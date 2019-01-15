@@ -17,7 +17,7 @@ class ProjectEvaluationResultTest(unittest.TestCase):
         good = [move_method_1, move_method_2, move_method_5]
         bad = [move_method_3]
         found = [found_move_method_1, found_move_method_3, found_move_method_4, found_move_method_5]
-        result = ProjectEvaluationResult(good, bad, found)
+        result = ProjectEvaluationResult(good, bad, found, "test_project_name")
         self.assertEqual(3, result.get_good_refactorings_number())
         self.assertEqual(1, result.get_bad_refactorings_number())
         self.assertEqual(2, result.get_found_good_refactorings_number())

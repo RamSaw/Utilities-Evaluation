@@ -30,6 +30,14 @@ class Evaluator:
                             project_result.get_found_bad_refactorings_number()) + "\n")
                     f.write("Found others refactorings number: " +
                             str(project_result.get_found_others_refactorings_number()) + "\n")
+                    # without target
+                    f.write("Found good refactorings without target number: " + str(
+                        project_result.get_found_good_refactorings_without_target_number()) + "\n")
+                    f.write(
+                        "Found bad refactorings without target number: " + str(
+                            project_result.get_found_bad_refactorings_without_target_number()) + "\n")
+                    f.write("Found others refactorings without target number: " +
+                            str(project_result.get_found_others_refactorings_without_target_number()) + "\n")
                     f.write("\n\n")
                     evaluation_result.add_result(project_result)
                 except Exception:
@@ -56,12 +64,38 @@ def write_result_to_file(filename: str, evaluation_result: EvaluationResult):
         print(string_to_write)
         f.write(string_to_write)
 
+        string_to_write = "Good Precision Without Target: " + \
+                          str(evaluation_result.get_good_precision_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Good Recall Without Target: " + \
+                          str(evaluation_result.get_good_recall_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Bad Precision Without Target: " + \
+                          str(evaluation_result.get_bad_precision_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
+        string_to_write = "Bad Recall Without Target: " + \
+                          str(evaluation_result.get_bad_recall_without_target()) + "\n"
+        print(string_to_write)
+        f.write(string_to_write)
+
         f.write("Good refactorings number: " + str(evaluation_result.numberOfGood) + "\n")
         f.write("Bad refactorings number: " + str(evaluation_result.numberOfBad) + "\n")
         f.write("Found good refactorings number: " + str(evaluation_result.numberOfFoundGood) + "\n")
         f.write("Found bad refactorings number: " + str(evaluation_result.numberOfFoundBad) + "\n")
         f.write("Found others refactorings number: " +
                 str(evaluation_result.numberOfFoundOthers) + "\n")
+        f.write("Found good refactorings without target number: " +
+                str(evaluation_result.numberOfFoundGoodWithoutTarget) + "\n")
+        f.write("Found bad refactorings without target number: " +
+                str(evaluation_result.numberOfFoundBadWithoutTarget) + "\n")
+        f.write("Found others refactorings without target number: " +
+                str(evaluation_result.numberOfFoundOthersWithoutTarget) + "\n")
 
 
 def print_help():
