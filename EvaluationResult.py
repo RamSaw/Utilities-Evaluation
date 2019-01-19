@@ -40,8 +40,8 @@ class EvaluationResult:
         return divide_with_nan(self.numberOfFoundGood, self.get_number_of_found_bad_and_good())
 
     def get_good_f_measure(self) -> float:
-        return 2 * self.get_good_precision() * self.get_good_recall() \
-               / (self.get_good_precision() + self.get_good_recall())
+        return divide_with_nan(2 * self.get_good_precision() * self.get_good_recall(),
+                               (self.get_good_precision() + self.get_good_recall()))
 
     def get_bad_precision(self) -> float:
         return divide_with_nan(self.numberOfBad - self.numberOfFoundBad,
@@ -51,8 +51,8 @@ class EvaluationResult:
         return divide_with_nan(self.numberOfBad - self.numberOfFoundBad, self.numberOfBad)
 
     def get_bad_f_measure(self) -> float:
-        return 2 * self.get_bad_precision() * self.get_bad_recall() \
-               / (self.get_bad_precision() + self.get_bad_recall())
+        return divide_with_nan(2 * self.get_bad_precision() * self.get_bad_recall(),
+                               (self.get_bad_precision() + self.get_bad_recall()))
 
     def get_number_of_bad_and_good(self) -> int:
         return self.numberOfGood + self.numberOfBad
@@ -68,8 +68,8 @@ class EvaluationResult:
                                self.get_number_of_found_bad_and_good_without_target())
 
     def get_good_f_measure_without_target(self) -> float:
-        return 2 * self.get_good_precision_without_target() * self.get_good_recall_without_target() \
-               / (self.get_good_precision_without_target() + self.get_good_recall_without_target())
+        return divide_with_nan(2 * self.get_good_precision_without_target() * self.get_good_recall_without_target(),
+                               (self.get_good_precision_without_target() + self.get_good_recall_without_target()))
 
     def get_bad_precision_without_target(self) -> float:
         return divide_with_nan(self.numberOfBad - self.numberOfFoundBadWithoutTarget,
@@ -80,8 +80,8 @@ class EvaluationResult:
         return divide_with_nan(self.numberOfBad - self.numberOfFoundBadWithoutTarget, self.numberOfBad)
 
     def get_bad_f_measure_without_target(self) -> float:
-        return 2 * self.get_bad_precision_without_target() * self.get_bad_recall_without_target() \
-               / (self.get_bad_precision_without_target() + self.get_bad_recall_without_target())
+        return divide_with_nan(2 * self.get_bad_precision_without_target() * self.get_bad_recall_without_target(),
+                               (self.get_bad_precision_without_target() + self.get_bad_recall_without_target()))
 
     def get_good_recall_only_good(self) -> float:
         return divide_with_nan(self.numberOfFoundGood, self.numberOfGood)
@@ -90,8 +90,8 @@ class EvaluationResult:
         return divide_with_nan(self.numberOfFoundGood, self.numberOfFoundGood + self.numberOfFoundOthersOnlyGood)
 
     def get_good_f_measure_only_good(self) -> float:
-        return 2 * self.get_good_precision_only_good() * self.get_good_recall_only_good() \
-               / (self.get_good_precision_only_good() + self.get_good_recall_only_good())
+        return divide_with_nan(2 * self.get_good_precision_only_good() * self.get_good_recall_only_good(),
+                               (self.get_good_precision_only_good() + self.get_good_recall_only_good()))
 
     def get_good_recall_without_target_only_good(self) -> float:
         return divide_with_nan(self.numberOfFoundGoodWithoutTarget, self.numberOfGood)
@@ -101,14 +101,16 @@ class EvaluationResult:
                                self.numberOfFoundGoodWithoutTarget + self.numberOfFoundOthersWithoutTargetOnlyGood)
 
     def get_good_f_measure_without_target_only_good(self) -> float:
-        return 2 * self.get_good_precision_without_target_only_good() * self.get_good_recall_without_target_only_good() \
-               / (self.get_good_precision_without_target_only_good() + self.get_good_recall_without_target_only_good())
+        return divide_with_nan(2 * self.get_good_precision_without_target_only_good() *
+                               self.get_good_recall_without_target_only_good(),
+                               (self.get_good_precision_without_target_only_good() +
+                                self.get_good_recall_without_target_only_good()))
 
     def get_good_accuracy(self) -> float:
-        return self.numberOfFoundGood / self.numberOfFoundGoodWithoutTarget
+        return divide_with_nan(self.numberOfFoundGood, self.numberOfFoundGoodWithoutTarget)
 
     def get_bad_accuracy(self) -> float:
-        return self.numberOfFoundBad / self.numberOfFoundBadWithoutTarget
+        return divide_with_nan(self.numberOfFoundBad, self.numberOfFoundBadWithoutTarget)
 
     def get_number_of_found_bad_and_good_without_target(self) -> int:
         return self.numberOfFoundGoodWithoutTarget + self.numberOfFoundBadWithoutTarget
