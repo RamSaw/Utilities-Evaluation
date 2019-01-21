@@ -32,16 +32,12 @@ class JDeodorantProjectEvaluator:
                 if i == 0:
                     found_refactorings = set(JDeodorantProjectEvaluator.get_found_refactorings(found_refactorings_path,
                                                                                                tool_names[i]))
-                    # TODO: error on "java.util.List<nz.govt.natlib.ndha.wctdpsdepositor.extractor.ArchiveFile>"
-                    # param in DLB_wct
                     for f_ref in found_refactorings:
                         f_ref.params_classes = list(map(lambda el: el.split(".")[len(el.split(".")) - 1],
                                                         f_ref.params_classes))
                 else:
                     next_found = set(JDeodorantProjectEvaluator.get_found_refactorings(found_refactorings_path,
                                                                                        tool_names[i]))
-                    # TODO: error on "java.util.List<nz.govt.natlib.ndha.wctdpsdepositor.extractor.ArchiveFile>"
-                    # param in DLB_wct
                     for f_ref in next_found:
                         f_ref.params_classes = list(map(lambda el: el.split(".")[len(el.split(".")) - 1],
                                                         f_ref.params_classes))
