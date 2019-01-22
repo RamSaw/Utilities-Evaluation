@@ -1,8 +1,4 @@
-from ProjectEvaluationResult import ProjectEvaluationResult
-
-
-def divide_with_nan(a: float, b: float) -> float:
-    return a / b if b != 0 else float('nan')
+from ProjectEvaluationResult import ProjectEvaluationResult, divide_with_nan
 
 
 class EvaluationResult:

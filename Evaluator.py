@@ -38,6 +38,13 @@ class Evaluator:
                             project_result.get_found_bad_refactorings_without_target_number()) + "\n")
                     f.write("Found others refactorings without target number: " +
                             str(project_result.get_found_others_refactorings_without_target_number()) + "\n")
+                    # modified version
+                    if len(project_result.good_refactorings) != 0:
+                        f.write("Precision " + str(project_result.get_good_precision()) + "\n")
+                        f.write("Recall " + str(project_result.get_good_recall()) + "\n")
+                        f.write("Precision Without Target " + str(project_result.get_good_precision_without_target())
+                                + "\n")
+                        f.write("Recall Without Target " + str(project_result.get_good_recall_without_target()) + "\n")
                     f.write("\n\n")
                     evaluation_result.add_result(project_result)
                 except Exception:

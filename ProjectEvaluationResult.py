@@ -3,6 +3,10 @@ from typing import List
 from MoveMethodRefactoring import MoveMethodRefactoring
 
 
+def divide_with_nan(a: float, b: float) -> float:
+    return a / b if b != 0 else float('nan')
+
+
 class ProjectEvaluationResult:
     def __init__(self,
                  good_refactorings: List[MoveMethodRefactoring],
@@ -74,3 +78,21 @@ class ProjectEvaluationResult:
 
     def get_found_others_refactorings_without_target_only_good_number(self) -> int:
         return len(self.found_others_refactorings_without_target_only_good)
+
+    def get_good_precision(self) -> float:
+        return divide_with_nan(self.get_found_good_refactorings_number(),
+                               self.get_found_good_refactorings_number() +
+                               self.get_found_others_refactorings_only_good_number())
+
+    def get_good_recall(self) -> float:
+        return divide_with_nan(self.get_found_good_refactorings_number(),
+                               self.get_good_refactorings_number())
+
+    def get_good_precision_without_target(self) -> float:
+        return divide_with_nan(self.get_found_good_refactorings_without_target_number(),
+                               self.get_found_good_refactorings_without_target_number() +
+                               self.get_found_others_refactorings_without_target_only_good_number())
+
+    def get_good_recall_without_target(self) -> float:
+        return divide_with_nan(self.get_found_good_refactorings_without_target_number(),
+                               self.get_good_refactorings_number())
